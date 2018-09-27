@@ -73,7 +73,6 @@ window.findNQueensSolution = function (num) {
         }
         for (var k = 0; k < num; k++) {
             b.togglePiece(i, k);
-            console.log("board",b);
             if (!b.hasAnyQueensConflicts()) {
                 helper(i + 1);
                 if (matrix.length > 0) {
@@ -83,7 +82,6 @@ window.findNQueensSolution = function (num) {
             b.togglePiece(i, k);
         }
     }
-
     helper(0);
     matrix.pop();
     return matrix;
