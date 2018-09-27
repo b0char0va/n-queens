@@ -41,100 +41,30 @@ window.countNRooksSolutions = function(num) {
   var solutionArray = [];
   var rooks = 0;
   var chessboard = new Board({n: 4});
-  //console.log(chessboard.attributes);
-  
-//------------
-  
-  var subArr = [];
+  var i = 0;
+  var j = 0;
+
+  function helper(chessboard) {
+    chessboard.togglePiece(i, j);
+    helper2(chessboard);
 
 
-  var nodesArr = [];
-  
-  function nodeMaker(chessboard){
-    for(var i=0; i<4; i++){
-      // {0: 0, 1: [0, 1, 2]}
-      var node = {}
-      node[i] = i;
-      node[i+1] = childSetMaker(num);
-      nodesArr.push( node );
+  }
+
+  function helper2(chessboard){
+    for(var i = 0; i < num; i++) {
+      for(var j = 0; j < num; j++) {
+        if(!chessboard.attributes[i][j] && !(chessboard.togglePiece(i,j)).hasAnyRowConflicts() && !(chessboard.togglePiece(i,j)).hasAnyColConflicts()){
+          chessboard.togglePiece(i,j);
+        }
+      }
     }
-  }
-  
-
-  function childSetMaker(num){
-    var result = [];
-    for(var i=0; i<num; i++){
-      result.push(i);
-    }
-    return result;
-  }
-
-
-  for(var i=0; i<nodesArr.length; i++){
-    
-    helper(nodesArr[i][i+1], i+1)
-
 
   }
 
-  function helper(arr, row){
-    //[0, 1, 2, 3]
-    // 1
-
-    // [[1, 0], [1, 1], [1, 2], [1, 3]]
-    var bigArr = [];
-    for(var i=0)
-    
-    var okToGo;
-    
-    fn(row, arr[0])
-    
-    return okToGo;
-  }
-  
-    // helper(node);
-    // [{1:1, 2:[0, 1, 2]}, {1:2, 2: [0, 1, 2]}]
-    
-    
-
-
-  // helper(node[i+1]);
-
-  // if(subArr.length === num ){
-  //   solutionArray.push(subArr);
-  // }
-  
-  // subArr = []
+  helper(chessboard);
   
 
-  //----------------
-  
-  // var j = 0;
-
-  // function helper(matrix, numberOfRooks) {
-  //   if(numberOfRooks === num) {
-  //     solutionCount++;
-  //     return;
-  //   }
-  //   if(numberOfRooks <= num){
-  //       matrix[0][j]; 
-  //       j++;  
-  //   }
-  //   if(!this.hasAnyRowConflicts() && !this.hasAnyColConflicts()){
-        
-    
-  //   }
-  //   helper(matrix, rooks, );
-    
-    
-
-
-  // }
-
-  // helper(chessboard.attributes, rooks);
-
-  
-  // return 
 
   // console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   // return solutionCount;
