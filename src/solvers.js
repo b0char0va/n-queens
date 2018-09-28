@@ -66,12 +66,6 @@ window.findNQueensSolution = function (num) {
     if(num === 0){
         return matrix;
     }
-    if(num === 2){
-        return [[],[]];
-    }
-    if(num === 3){
-        return [[],[],[]];
-    }
     function helper(i) {
         if (i === num) {
             for (var key in b.attributes) {
@@ -91,6 +85,12 @@ window.findNQueensSolution = function (num) {
         }
     }
     helper(0);
+    if(matrix.length === 0){
+        for(var i = 0; i < num; i++) {
+            matrix.push([]);
+        }
+        return matrix;
+    }
     matrix.pop();
     return matrix;
 };
